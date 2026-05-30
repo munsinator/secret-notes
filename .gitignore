@@ -1,6 +1,6 @@
 # Frontend
-frontend/secret-notes/node_modules/
-frontend/secret-notes/dist/
+frontend/node_modules/
+frontend/dist/
 
 # Backend
 backend/node_modules/
