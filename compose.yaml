@@ -1,6 +1,6 @@
 services:
   database:
-    image: postgres:17-alpine
+    image: postgres:18
     container_name: secret-notes-db
     restart: unless-stopped
     environment:
