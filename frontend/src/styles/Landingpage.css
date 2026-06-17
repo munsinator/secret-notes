@@ -1,0 +1,19 @@
+.add-note{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: 2em;
+}
+
+.add-note-btn{
+    background-color: #533F04;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.add-note-btn:hover{
+    background-color: #7A5C0F;
+}

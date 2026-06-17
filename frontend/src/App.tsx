@@ -1,10 +1,9 @@
-import './App.css'
-import { Card } from './components/Card'
+import { LandingPage } from './pages/LandingPage';
 
 function App() {
   return (
     <>
-      <Card/>
+      <LandingPage/>
     </>
   )
 }

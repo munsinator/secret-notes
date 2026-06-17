@@ -1,4 +1,4 @@
-.search{
+.input-container{
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -16,4 +16,9 @@
     color: white;
     border-radius: 5px;
     border: none;
+}
+
+.submit:hover{
+    background-color: #7A5C0F;
+    cursor: pointer;
 }

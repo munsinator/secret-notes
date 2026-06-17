@@ -1,11 +1,13 @@
 import '../styles/Card.css';
-import { SearchInput } from './SearchInput';
+import { Input } from './Input';
 
-export function Card() {
+export function Card({ title }: { title: string }){
   return (
-    <div className="card">
-        <p style={{position: 'absolute', top: '-28px', left: '10px', fontWeight: 600}}>🔒 Note Vault</p>
-        <SearchInput></SearchInput>
-    </div>
+    <>
+    <div className="card">  
+      <p style={{position: 'absolute', top: '-28px', left: '10px', fontWeight: 600}}>{title}</p>
+      <Input></Input>
+      </div>
+    </>
   )
 }
