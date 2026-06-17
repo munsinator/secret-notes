@@ -3,3 +3,17 @@
     justify-content: space-between;
     width: 100%;
 }
+
+.link-input{
+    height: 2em;
+    width: 90%;
+    border-radius:5px;
+    border: none;
+}
+
+.submit{
+    background-color:#533F04;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
