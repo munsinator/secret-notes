@@ -12,5 +12,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  backend:
+    build:
+      context: ./backend
+    container_name: secret-notes-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://secretuser:secretpass@database:5432/secretnotes
+      NODE_ENV: production
+    ports:
+      - "5001:5000"
+    depends_on:
+      - database
+
 volumes:
   postgres_data:

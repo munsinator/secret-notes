@@ -7,19 +7,24 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node --test test/**/*.test.js",
-    "start": "fastify start -l info app.js",
-    "dev": "fastify start -w -l info -P app.js"
+    "test": "NODE_ENV=test jest --runInBand",
+    "test:coverage": "NODE_ENV=test jest --coverage --runInBand",
+    "start": "fastify start -l info -a 0.0.0.0 -p 5000 app.js",
+    "dev": "fastify start -w -l info -a 0.0.0.0 -p 5000 app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^5.0.0",
-    "fastify-plugin": "^5.0.0",
     "@fastify/autoload": "^6.0.0",
+    "@fastify/cors": "^11.2.0",
     "@fastify/sensible": "^6.0.0",
-    "fastify-cli": "^7.4.1"
+    "fastify": "^5.0.0",
+    "fastify-cli": "^7.4.1",
+    "fastify-plugin": "^5.1.0",
+    "pg": "^8.22.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
 }

@@ -18,6 +18,5 @@ Thumbs.db
 *.tsbuildinfo
 
 # DevOps
-Dockerfile
 docker-compose.yml
 .github/
