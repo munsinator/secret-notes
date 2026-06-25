@@ -1,17 +1,18 @@
-.add-note{
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    gap: 0.5em;
-    margin-bottom: 2em;
-}
+.add-note-btn {
+    width: 40px;
+    height: 40px;
 
-.add-note-btn{
     background-color: #533F04;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
+    font-size: 1.5em;
 }
 
 .add-note-btn:hover{

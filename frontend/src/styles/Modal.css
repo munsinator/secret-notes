@@ -1,0 +1,73 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+}
+
+.modal-card {
+    position: relative;
+    width: min(90%, 420px);
+    background: #332E1B;
+    border-radius: 5px;
+    padding: 3rem 2rem 2rem 2rem;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    color: white;
+    font-weight: 400;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.note-content {
+    margin: 1.5rem 0;
+    padding: 1.2rem;
+    height: 200px;
+    background: white;
+    border: 1px solid #ccc;
+    line-height: 1.6;
+
+    /* Initially blurred and unselectable */
+    filter: blur(2px);
+    user-select: none;
+    transition: filter 0.3s ease;
+}
+
+.note-content.unlocked {
+    filter: blur(0);
+    user-select: text;
+    color: black;
+    overflow:scroll;
+}
+
+.unlock-btn {
+    width: 100%;
+    padding: 0.9rem 1rem;
+
+    background: #533F04;
+    color: white;
+
+    border: none;
+    border-radius: 999px;
+
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.unlock-btn:hover {
+    background: #6b5208;
+}

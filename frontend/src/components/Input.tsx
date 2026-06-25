@@ -1,14 +1,10 @@
 import '../styles/Input.css';
 
-function submitLink(){
-    console.log("Link submitted");  
-}
-
-export function Input(){
+export function Input({ text, onClick, className }: { text: string; onClick?: () => void; className?: string }) {
     return (
         <div className="input-container">
-            <input className='link-input' type="text" placeholder="Enter the link to access your notes ..."></input>
-            <button className='submit' onClick={submitLink}>➤</button>
+            <input className={`${className} link-input`} type="text" placeholder={text}></input>
+            <button className='submit' onClick={onClick}>➤</button>
         </div>
         
     )
