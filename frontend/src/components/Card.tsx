@@ -1,7 +1,12 @@
-export function Card() {
+import '../styles/Card.css';
+
+export function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="">
-        <p>this is a card</p>
-    </div>
+    <>
+    <div className="card">  
+      <p style={{position: 'absolute', top: '-28px', left: '10px', fontWeight: 600}}>{title}</p>
+      {children}
+      </div>
+    </>
   )
 }
