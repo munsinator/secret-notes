@@ -92,7 +92,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --file=package.json --severity-threshold=high
+          args: --file=backend/package.json --severity-threshold=high
 
   frontend-security-scan:
     name: Frontend Snyk security scan
@@ -122,7 +122,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --file=package.json --severity-threshold=high
+          args: --file=frontend/package.json --severity-threshold=high
 
   docker-build-and-push:
     name: Docker build and push
