@@ -125,3 +125,40 @@
     grid-template-columns: 1fr;
   }
 }
+
+.feature-flag-badge {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #7a5c0f;
+  border-radius: 999px;
+  background: #332e1b;
+  color: #f5d26a;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.landing-page.new-ui {
+  width: min(1100px, 94vw);
+}
+
+.landing-page.new-ui .hero h1 {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.landing-page.new-ui .cards {
+  gap: 1.25rem;
+}
+
+.landing-page.new-ui .card {
+  border: 1px solid #7a5c0f;
+}
+
+.landing-page.new-ui .form button {
+  background-color: #7a5c0f;
+}
+
+.landing-page.new-ui .form button:hover:not(:disabled) {
+  background-color: #9a7516;
+}

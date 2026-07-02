@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from '../components/Card';
+import { getPostHog } from '../lib/posthog';
 import '../styles/LandingPage.css';
 
 type CreateNoteResponse = {
@@ -28,6 +29,15 @@ export function LandingPage() {
 
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isNewUiEnabled, setIsNewUiEnabled] = useState(false);
+
+  useEffect(() => {
+    const posthog = getPostHog();
+
+    posthog.onFeatureFlags(() => {
+      setIsNewUiEnabled(posthog.isFeatureEnabled('secret-notes-new-ui') === true);
+    });
+  }, []);
 
   async function createNote() {
     setMessage('');
@@ -43,6 +53,8 @@ export function LandingPage() {
       setMessage('Enter an encryption key.');
       return;
     }
+
+    getPostHog().capture('create_note_clicked');
 
     setIsLoading(true);
 
@@ -71,6 +83,10 @@ export function LandingPage() {
         setCreateNoteText('');
         setCreateKey('');
         setMessage('Note created securely. Save the ID and key.');
+
+        getPostHog().capture('note_created', {
+          note_id: data.id,
+        });
       }
     } catch {
       setMessage('Could not connect to the backend.');
@@ -93,40 +109,63 @@ export function LandingPage() {
       return;
     }
 
+    getPostHog().capture('read_note_clicked');
+
     setIsLoading(true);
 
     try {
       const encodedKey = encodeURIComponent(readKey);
+      const trimmedNoteId = readNoteId.trim();
 
       const response = await fetch(
-        `${API_BASE_URL}/notes/${readNoteId.trim()}?key=${encodedKey}`
+        `${API_BASE_URL}/notes/${trimmedNoteId}?key=${encodedKey}`
       );
 
       const data = (await response.json()) as ReadNoteResponse | ErrorResponse;
 
       if (!response.ok) {
         setMessage('error' in data ? data.error : 'Could not read note.');
+
+        getPostHog().capture('note_decryption_failed', {
+          note_id: trimmedNoteId,
+        });
+
         return;
       }
 
       if ('note' in data) {
         setDecryptedNote(data.note);
         setMessage('Note decrypted successfully.');
+
+        getPostHog().capture('note_decrypted', {
+          note_id: trimmedNoteId,
+        });
       }
     } catch {
       setMessage('Could not connect to the backend.');
+
+      getPostHog().capture('note_decryption_failed', {
+        note_id: readNoteId.trim(),
+        reason: 'backend_connection_failed',
+      });
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <main className="landing-page">
+    <main className={`landing-page ${isNewUiEnabled ? 'new-ui' : ''}`}>
       <section className="hero">
         <h1>Secret Notes</h1>
         <p>
           Create encrypted notes and only decrypt them again with the correct key.
         </p>
+
+        {isNewUiEnabled && (
+          <p className="feature-flag-badge">
+            New UI enabled by PostHog feature flag
+          </p>
+        )}
       </section>
 
       <section className="cards">
