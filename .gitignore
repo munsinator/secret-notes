@@ -9,7 +9,9 @@ backend/dist/
 # Shared
 .env
 .env.*
+frontend/.env
 coverage/
+backend/coverage/
 *.log
 .vscode/
 .idea/
