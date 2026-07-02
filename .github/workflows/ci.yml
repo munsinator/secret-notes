@@ -37,7 +37,7 @@ jobs:
         run: npm test -- --silent
 
   frontend-lint-build:
-    name: Frontend lint and build
+    name: Frontend tests, lint and build
     runs-on: ubuntu-latest
 
     defaults:
@@ -57,6 +57,9 @@ jobs:
 
       - name: Install frontend dependencies
         run: npm ci
+
+      - name: Run frontend tests
+        run: npm test
 
       - name: Run frontend lint
         run: npm run lint
