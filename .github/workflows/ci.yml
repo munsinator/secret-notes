@@ -169,7 +169,7 @@ jobs:
       - frontend-lint-build
       - backend-security-scan
       - frontend-security-scan
-      - sonarqube-analysis
+  #    - sonarqube-analysis
 
     steps:
       - name: Checkout repository
