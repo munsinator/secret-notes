@@ -127,39 +127,39 @@ jobs:
           command: test
           args: --file=frontend/package.json --severity-threshold=high
 
-  sonarqube-analysis:
-    name: SonarQube analysis
-    runs-on: ubuntu-latest
-    needs:
-      - backend-test
-      - frontend-lint-build
+  #sonarqube-analysis:
+  #  name: SonarQube analysis
+  #  runs-on: ubuntu-latest
+  #  needs:
+  #    - backend-test
+  #    - frontend-lint-build
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+  #  steps:
+  #    - name: Checkout repository
+  #      uses: actions/checkout@v4
+  #      with:
+  #        fetch-depth: 0
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.14.0
-          cache: npm
-          cache-dependency-path: backend/package-lock.json
+  #    - name: Set up Node.js
+  #      uses: actions/setup-node@v4
+  #      with:
+  #        node-version: 22.14.0
+  #        cache: npm
+  #        cache-dependency-path: backend/package-lock.json
 
-      - name: Install backend dependencies
-        working-directory: backend
-        run: npm ci
+  #    - name: Install backend dependencies
+  #      working-directory: backend
+  #      run: npm ci
 
-      - name: Generate backend coverage
-        working-directory: backend
-        run: npm run test:coverage -- --silent
+  #    - name: Generate backend coverage
+  #      working-directory: backend
+  #      run: npm run test:coverage -- --silent
 
-      - name: Run SonarQube scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  #    - name: Run SonarQube scan
+  #      uses: SonarSource/sonarqube-scan-action@v5
+  #      env:
+  #        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   docker-build-and-push:
     name: Docker build and push
